@@ -7,6 +7,7 @@ const bcryptjs = require('bcryptjs');
 const { hashPassword } = require('./passwordUtils');
 const fs = require('fs');
 const path = require('path');
+const session = require('express-session');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
