@@ -42,36 +42,14 @@ router.use(express.urlencoded({ extended: false }));
 router.use(cookieParser());
 router.use(express.static(path.join(__dirname, 'public')));
 
-// router.use(session({
-//   secret: process.env.SECRET_KEY,
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: { maxAge: 3 * 60 * 60 * 1000 }  // Sessão válida por 3 horas
-// }));
-
 router.use(session({
-  secret: process.env.SECRET_KEY || 'secreta',
+  secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: false,
-  cookie: {
-    maxAge: 3 * 60 * 60 * 1000,  // Sessão válida por 3 horas
-    httpOnly: true,              // Protege o cookie de ser acessado via JavaScript do cliente
-    secure: process.env.NODE_ENV === 'production'  // Usa apenas HTTPS em produção
-  }
+  cookie: { maxAge: 3 * 60 * 60 * 1000 }  // Sessão válida por 3 horas
 }));
 
 router.use(flash());
-
-// app.use(session({
-//   secret: process.env.SECRET_KEY,
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: { maxAge: 3 * 60 * 60 * 1000 }
-// }));
-
-// Configura rotas
-// const mainRouter = require('./routes/index');
-// app.use('/', mainRouter);
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -746,13 +724,6 @@ router.post('/editar_video/:id', async (req, res) => {
 //   cookie: { maxAge: 3 * 60 * 60 * 1000 }
 // }));
 
-// function ensureAuthenticated(req, res, next) {
-//   if (req.session.user) {
-//     return next();
-//   }
-//   res.redirect('/login');
-// }
-
 function ensureAuthenticated(req, res, next) {
   if (req.session.user) {
     return next();
@@ -760,35 +731,16 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/login');
 }
 
-// async function ensureAdmin(req, res, next) {
-//   const client = await connectDb();
-
-//   try {
-
-//     const queryAdminCheck = 'SELECT is_admin FROM usuarios WHERE id = $1';
-//     const resultAdminCheck = await client.query(queryAdminCheck, [req.session.user.id]);
-
-//     if (resultAdminCheck.rows.length === 0 || !resultAdminCheck.rows[0].is_admin) {
-//       await client.end();
-//       return res.redirect('/home');
-//     }
-
-//     next();
-//   } catch (err) {
-//     console.error('Erro ao verificar se o usuário é administrador:', err);
-//     return res.status(500).send("Erro interno do servidor");
-//   } finally {
-//     await client.end();
-//   }
-// }
-
 async function ensureAdmin(req, res, next) {
   const client = await connectDb();
+
   try {
+
     const queryAdminCheck = 'SELECT is_admin FROM usuarios WHERE id = $1';
     const resultAdminCheck = await client.query(queryAdminCheck, [req.session.user.id]);
 
     if (resultAdminCheck.rows.length === 0 || !resultAdminCheck.rows[0].is_admin) {
+      await client.end();
       return res.redirect('/home');
     }
 
