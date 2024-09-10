@@ -678,7 +678,7 @@ router.post('/editar_video/:id', async (req, res) => {
 
 
 
-app.use(session({
+router.use(session({
   secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: false,
