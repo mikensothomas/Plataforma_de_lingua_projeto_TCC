@@ -10,6 +10,8 @@ const path = require('path');
 const session = require('express-session');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const flash = require('connect-flash');
+router.use(flash());
 
 require('dotenv').config();
 

@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(flash());
+// app.use(flash());
 
 // app.use(session({
 //   secret: process.env.SECRET_KEY,
