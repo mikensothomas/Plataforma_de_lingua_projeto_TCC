@@ -1,0 +1,312 @@
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to right, #3a7bd5, #3a6073);
+    color: white;
+    padding: 20px 50px;
+    box-shadow: 0 2px 4px rgba(155, 11, 11, 0.1);
+    z-index: 1000;
+}
+  
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+header nav ul li.logout {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+header nav ul li a,
+header nav ul li summary {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+header nav ul li a:hover,
+header nav ul li summary:hover {
+    background: linear-gradient(to right, #3a7bd5, #3a6073);
+}
+
+header nav ul li details ul {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: linear-gradient(to right, #3a7bd5, #3a6073);
+    padding: 10px;
+    list-style: none;
+    margin: 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header nav ul li details summary {
+    cursor: pointer;
+}
+
+header nav ul li details[open] ul {
+    display: block;
+}
+
+header nav ul li details ul li {
+    margin: 5px 0;
+}
+
+header nav ul li details ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: block;
+}
+
+header nav ul li details ul li a:hover {
+    background-color: #555;
+}
+
+
+.mikensonthomasinfo {
+    position: absolute;
+    top: 6px;
+    right: 200px;
+    width: 150px;
+    padding: 10px;
+    background-color: #004F71;
+    color: #FFFFFF;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    transition: all 0.3s ease; 
+}
+
+.mikensonthomasinfo h1,
+.mikensonthomasinfo h2, 
+.mikensonthomasinfo h3, 
+.mikensonthomasinfo h4 {
+    font-size: 10px;
+    margin: 5px 0;
+}
+
+.mikensonthomasinfo img {
+    width: 50px;
+    height: auto;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .mikensonthomasinfo {
+        top: 10px;
+        right: 50px;
+        width: 120px;
+    }
+    
+    .mikensonthomasinfo h1,
+    .mikensonthomasinfo h2, 
+    .mikensonthomasinfo h3, 
+    .mikensonthomasinfo h4 {
+        font-size: 10px;
+    }
+    
+    .mikensonthomasinfo img {
+        width: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mikensonthomasinfo {
+        top: 1px;
+        right: 118px;
+        width: 100px;
+    }
+    
+    .mikensonthomasinfo h1,
+    .mikensonthomasinfo h2, 
+    .mikensonthomasinfo h3, 
+    .mikensonthomasinfo h4 {
+        font-size: 8px;
+    }
+    
+    .mikensonthomasinfo img {
+        width: 35px;
+    }
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+    color: white;
+    text-decoration-line: none;
+}
+
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: linear-gradient(to right, #3a7bd5, #3a6073);
+    }
+
+    header nav ul.active {
+        display: flex;
+    }
+
+    header nav ul li {
+        width: 100%;
+        text-align: left;
+        margin-right: 0;
+    }
+
+    header nav ul li.logout {
+        text-align: right;
+    }
+
+    header nav ul li details ul {
+        position: relative;
+        left: auto;
+        top: auto;
+        background: linear-gradient(to right, #3a7bd5, #3a6073);
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+    }
+}  
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.facilitando {
+    position: relative;
+    top: 4.8%;
+    text-align: center;
+    padding: 20px;
+    background-color: #00796b;
+    color: white;
+    margin-bottom: 10px;
+    border-radius: 10%;
+}
+
+.facilitando h1 {
+    margin: 38px;
+}
+
+.bem_vindo {
+    position: relative;
+    top: 2%;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 97%;
+    margin-top: auto;
+    border-radius: 8px;
+}
+
+.socials {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.socials li {
+    margin: 0 10px;
+}
+
+.socials a {
+    color: white;
+    font-size: 1.5em;
+    transition: color 0.3s;
+}
+
+.socials a:hover {
+    color: #00aced;
+}
+
+@media screen and (max-width: 768px) {
+    .facilitando h1 {
+        font-size: 2em;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .bem_vindo {
+        padding: 15px;
+    }
+
+    .socials a {
+        font-size: 1.2em;
+    }
+
+    .footer-content {
+        padding: 15px;
+    }
+}

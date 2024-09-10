@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.header {
+    margin-bottom: 40px;
+    margin-top: 80px;
+}
+
+.header h1 {
+    font-size: calc(1em + 1vw);
+    font-size: 2em;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+    color: white;
+    text-decoration-line: none;
+}
+
+@media (min-width: 1200px) {
+    .header h1 {
+        font-size: calc(1em + 1vw);
+    }
+}
+
+@media (max-width: 600px) {
+    .header h1 {
+        font-size: calc(1em + 1vw);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: calc(1em + 1vw);
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: calc(1em + 1vw);
+    }
+}
+
+.header p {
+    font-size: 1.2em;
+    color: white;
+}
+
+.levels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 80px;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 80px auto;
+}
+
+.level {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 20px;
+    width: 10%;
+    min-width: 280px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.level:hover {
+    transform: scale(1.05);
+}
+
+.level img {
+    max-width: 100px;
+    margin-bottom: 20px;
+}
+
+.level h2 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.level p {
+    font-size: 1em;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+@media (max-width: 992px) {
+    .level h2 {
+        font-size: 1.2em;
+    }
+
+    .level p {
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 600px) {
+    .level h2 {
+        font-size: 1em;
+    }
+
+    .level p {
+        font-size: 0.9em;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .level {
+        width: calc(50% - 40px);
+    }
+}
+
+@media (max-width: 600px) {
+    .level {
+        width: 60%;
+    }
+}
+
+
+.button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
