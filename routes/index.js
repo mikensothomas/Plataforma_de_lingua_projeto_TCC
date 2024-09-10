@@ -1,3 +1,23 @@
+// const express = require('express');
+// const { Client } = require('pg');
+// const connectDb = require('../bd.js');
+// const multer = require('multer');
+// const logger = require('morgan');
+// const cookieParser = require('cookie-parser');
+// const router = express.Router();
+// const bcryptjs = require('bcryptjs');
+// const { hashPassword } = require('./passwordUtils');
+// const fs = require('fs');
+// const path = require('path');
+// const session = require('express-session');
+// const nodemailer = require('nodemailer');
+// const crypto = require('crypto');
+// const flash = require('connect-flash');
+// router.use(flash());
+
+// require('dotenv').config();
+// // const rou = express();
+
 const express = require('express');
 const { Client } = require('pg');
 const connectDb = require('../bd.js');
@@ -13,16 +33,21 @@ const session = require('express-session');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const flash = require('connect-flash');
-router.use(flash());
 
 require('dotenv').config();
-// const rou = express();
 
 router.use(logger('dev'));
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
 router.use(cookieParser());
 router.use(express.static(path.join(__dirname, 'public')));
+
+router.use(session({
+  secret: process.env.SECRET_KEY,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 3 * 60 * 60 * 1000 }  // Sessão válida por 3 horas
+}));
 
 // app.use(flash());
 
@@ -703,12 +728,12 @@ router.post('/editar_video/:id', async (req, res) => {
 
 
 
-router.use(session({
-  secret: process.env.SECRET_KEY,
-  resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 3 * 60 * 60 * 1000 }
-}));
+// router.use(session({
+//   secret: process.env.SECRET_KEY,
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: { maxAge: 3 * 60 * 60 * 1000 }
+// }));
 
 function ensureAuthenticated(req, res, next) {
   if (req.session.user) {
