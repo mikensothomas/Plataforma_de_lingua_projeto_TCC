@@ -4,20 +4,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const dotenv = require('dotenv');
-const connectDb = require('./bd.js');
 const session = require('express-session');
-const bcryptjs = require('bcryptjs');
-const { Client } = require('pg');
-const jwt = require('jsonwebtoken');
-// var port = normalizePort(process.env.PORT || '3000');
-// app.set('port', port);
-
 const flash = require('connect-flash');
-
-const indexRouter = require('./routes/index');
-// const usersRouter = require('./routes/users');
-
+const connectDb = require('./bd.js');
+const criarTabelas = require('./bd.js'); // Importar a função de criação de tabelas
 dotenv.config();
+
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -38,18 +30,20 @@ app.use(session({
   cookie: { maxAge: 3 * 60 * 60 * 1000 }
 }));
 
-// Configura o diretório de visualizações e o mecanismo de visualização
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-// Configura o diretório para arquivos estáticos (CSS, JS, etc.)
-app.use('/stylesheets', express.static(path.join(__dirname, 'public/stylesheets')));
-app.use('/javascripts', express.static(path.join(__dirname, 'public/javascripts')));
-app.use('/imagens', express.static(path.join(__dirname, 'public/imagens')));
-
-// Corrige o caminho para o roteador
-const mainRouter = require('./routes/index'); // Caminho correto para o arquivo de roteador
+// Configura rotas
+const mainRouter = require('./routes/index');
 app.use('/', mainRouter);
+
+// Garantir a conexão com o banco de dados e a criação das tabelas
+(async () => {
+  try {
+    const client = await connectDb();
+    await criarTabelas(client); // Criar tabelas
+    console.log("Conectado ao banco de dados e tabelas criadas");
+  } catch (error) {
+    console.error("Erro ao conectar e criar tabelas:", error);
+  }
+})();
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
