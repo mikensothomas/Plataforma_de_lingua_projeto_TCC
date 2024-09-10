@@ -21,6 +21,10 @@ router.get('/', function(req, res) {
   res.render('index');
 });
 
+router.get('/login', (req, res) => {
+    res.render('login', { message: req.flash('error') });
+});
+
 router.get('/home', function(req, res) {
   res.render('home');
 });
@@ -670,5 +674,205 @@ router.post('/editar_video/:id', async (req, res) => {
     }
   }
 });
+
+
+
+
+
+
+function ensureAuthenticated(req, res, next) {
+  if (req.session.user) {
+    return next();
+  }
+  res.redirect('/login');
+}
+
+async function ensureAdmin(req, res, next) {
+  const client = await connectDb();
+
+  try {
+
+    const queryAdminCheck = 'SELECT is_admin FROM usuarios WHERE id = $1';
+    const resultAdminCheck = await client.query(queryAdminCheck, [req.session.user.id]);
+
+    if (resultAdminCheck.rows.length === 0 || !resultAdminCheck.rows[0].is_admin) {
+      await client.end();
+      return res.redirect('/home');
+    }
+
+    next();
+  } catch (err) {
+    console.error('Erro ao verificar se o usuário é administrador:', err);
+    return res.status(500).send("Erro interno do servidor");
+  } finally {
+    await client.end();
+  }
+}
+
+// router.get('/login', (req, res) => {
+//   res.render('login', { message: req.flash('error') });
+// });
+
+router.post('/login', async (req, res) => {
+  const { email, senha } = req.body;
+
+  try {
+    const client = await connectDb();
+    
+    const query = 'SELECT * FROM usuarios WHERE email = $1';
+    const result = await client.query(query, [email]);
+
+    if (result.rows.length > 0) {
+      const usuario = result.rows[0];
+      const passwordMatch = await bcrypt.compare(senha, usuario.senha);
+
+      if (passwordMatch) {
+        req.session.user = { id: usuario.id, email: usuario.email };
+        return res.redirect('/home');
+      }
+    }
+    req.flash('error', 'Email ou senha inválido');
+    alert("Email ou senha inválido");
+    res.redirect('/login');
+    await client.end();
+  } catch (error) {
+    console.error("Erro ao consultar o banco de dados:", error);
+    res.status(500).send("Erro ao consultar o banco de dados");
+  }
+});
+
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).send("Erro ao encerrar a sessão");
+    }
+    res.redirect('/login');
+  });
+});
+
+router.post('/avaliar', async (req, res) => {
+  const { video_id, avaliacao } = req.body;
+  const client = await connectDb();
+
+  try {
+    await client.query(
+      `INSERT INTO avaliacoes (video_id, avaliacao)
+      VALUES ($1, $2)`,
+      [video_id, avaliacao]
+    );
+    res.status(200).send('Avaliação registrada com sucesso!');
+  } catch (err) {
+    console.error('Erro ao registrar a avaliação:', err);
+    res.status(500).send('Erro ao registrar a avaliação.');
+  } finally {
+    await client.end();
+  }
+});
+
+router.get('/avaliacao-popular', async (req, res) => {
+  const { videoId } = req.query;
+
+  const client = await connectDb();
+
+  try {
+    const maxVotesResult = await client.query(
+      `SELECT COUNT(*) as max_votes
+       FROM avaliacoes 
+       WHERE video_id = $1
+       GROUP BY avaliacao
+       ORDER BY max_votes DESC
+       LIMIT 1`,
+      [videoId]
+    );
+
+    if (maxVotesResult.rows.length === 0) {
+      res.status(404).send('Nenhuma avaliação encontrada para este vídeo.');
+      return;
+    }
+
+    const maxVotes = parseInt(maxVotesResult.rows[0].max_votes);
+
+    const result = await client.query(
+      `SELECT avaliacao
+       FROM avaliacoes
+       WHERE video_id = $1
+       GROUP BY avaliacao
+       HAVING COUNT(*) = $2`,
+      [videoId, maxVotes]
+    );
+
+    if (result.rows.length > 0) {
+      const highestRating = Math.max(...result.rows.map(row => parseInt(row.avaliacao)));
+      res.status(200).json({ avaliacao: highestRating, count: maxVotes });
+    } else {
+      res.status(404).send('Nenhuma avaliação encontrada para este vídeo.');
+    }
+  } catch (err) {
+    console.error('Erro ao buscar avaliação popular:', err);
+    res.status(500).send('Erro ao buscar avaliação popular.');
+  } finally {
+    await client.end();
+  }
+});
+
+router.get('/avaliacao-media', async (req, res) => {
+  const { videoId } = req.query;
+
+  const client = await connectDb();
+
+  try {
+    const result = await client.query(
+      `SELECT AVG(avaliacao) as media, COUNT(*) as total_cliques
+       FROM avaliacoes
+       WHERE video_id = $1`,
+      [videoId]
+    );
+
+    if (result.rows.length > 0) {
+      const { media, total_cliques } = result.rows[0];
+      res.status(200).json({ media: parseFloat(media).toFixed(2), total_cliques: parseInt(total_cliques) });
+    } else {
+      res.status(404).send('Nenhuma avaliação encontrada para este vídeo.');
+    }
+  } catch (err) {
+    console.error('Erro ao calcular a média das avaliações:', err);
+    res.status(500).send('Erro ao calcular a média das avaliações.');
+  } finally {
+    await client.end();
+  }
+});
+
+router.use('/cadastra_videos', ensureAuthenticated, ensureAdmin);
+router.use('/home', ensureAuthenticated);
+router.use('/lista_comentario', ensureAuthenticated, ensureAdmin);
+router.use('/listar_usuarios', ensureAuthenticated, ensureAdmin);
+router.use('/atualizar_usuario', ensureAuthenticated, ensureAdmin);
+router.use('/aulas_nivel01', ensureAuthenticated);
+router.use('/aulas_nivel02', ensureAuthenticated);
+router.use('/aulas_nivel03', ensureAuthenticated);
+router.use('/video_list', ensureAuthenticated, ensureAdmin);
+
+
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
+
+router.use(function(req, res, next) {
+  next(createError(404));
+});
+
+router.use(function(err, req, res, next) {
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+// const startServer = async () => {
+//   await connectDb();
+//   app.listen(process.env.PORT, () => {
+//     console.log(`Servidor iniciado com sucesso`);
+//   });
+// };
 
 module.exports = router;
