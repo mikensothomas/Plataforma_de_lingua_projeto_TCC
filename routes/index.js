@@ -49,7 +49,7 @@ router.use(session({
   cookie: { maxAge: 3 * 60 * 60 * 1000 }  // Sessão válida por 3 horas
 }));
 
-// app.use(flash());
+router.use(flash());
 
 // app.use(session({
 //   secret: process.env.SECRET_KEY,
