@@ -3,6 +3,24 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+// const connectDb = async () => {
+//     const client = new Client({
+//         user: process.env.PGUSER,
+//         host: process.env.PGHOST,
+//         database: process.env.PGDATABASE,
+//         password: process.env.PGPASSWORD,
+//         port: process.env.PGPORT
+//     });
+
+//     try {
+//         await client.connect();
+//         return client;
+//     } catch (error) {
+//         console.error("Erro ao conectar ao banco de dados:", error);
+//         throw error;
+//     }
+// };
+
 const connectDb = async () => {
     const client = new Client({
         // connectionString: process.env.DATABASE_URL
