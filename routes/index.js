@@ -678,7 +678,12 @@ router.post('/editar_video/:id', async (req, res) => {
 
 
 
-
+app.use(session({
+  secret: process.env.SECRET_KEY,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 3 * 60 * 60 * 1000 }
+}));
 
 function ensureAuthenticated(req, res, next) {
   if (req.session.user) {
@@ -863,12 +868,5 @@ router.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// const startServer = async () => {
-//   await connectDb();
-//   app.listen(process.env.PORT, () => {
-//     console.log(`Servidor iniciado com sucesso`);
-//   });
-// };
 
 module.exports = router;

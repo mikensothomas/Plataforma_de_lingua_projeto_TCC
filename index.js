@@ -23,12 +23,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(flash());
 
-app.use(session({
-  secret: process.env.SECRET_KEY,
-  resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 3 * 60 * 60 * 1000 }
-}));
+// app.use(session({
+//   secret: process.env.SECRET_KEY,
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: { maxAge: 3 * 60 * 60 * 1000 }
+// }));
 
 // Configura rotas
 const mainRouter = require('./routes/index');
