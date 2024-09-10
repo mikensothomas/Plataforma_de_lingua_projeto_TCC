@@ -720,7 +720,7 @@ router.post('/login', async (req, res) => {
 
     if (result.rows.length > 0) {
       const usuario = result.rows[0];
-      const passwordMatch = await bcrypt.compare(senha, usuario.senha);
+      const passwordMatch = await bcryptjs.compare(senha, usuario.senha);
 
       if (passwordMatch) {
         req.session.user = { id: usuario.id, email: usuario.email };
