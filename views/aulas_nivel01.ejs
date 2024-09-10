@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel='stylesheet' href='/stylesheets/aulas.css' />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plataforma de língua portuguesa para estrangeiros haitianos.</title>
+</head>
+<body>
+  <header>
+    <div class="menu">
+      <span class="hamburger"><i class="fas fa-bars"></i></span>
+      <nav>
+        <ul>
+            <li><a href="/" class="logo">HT.</a></li>
+            <li><a href="/cadastro"><i class="fas fa-user-plus"></i>Cadastro</a></li>
+            <li><a href="/home"><i class="fas fa-home"></i>Home</a></li>
+            <li>
+                <details>
+                    <summary><i class="fas fa-envelope"></i> Contatos</summary>
+                    <ul>
+                      <li><a href="https://wa.me/5549984177437" target="_blank">Whatsapp <i class="fab fa-whatsapp"></i></a></li>
+                      <li><a href="https://chat.whatsapp.com/KcxOOiU5TisKApgKrCjXLu" target="_blank">Grupo <i class="fab fa-whatsapp"></i></a></li>
+                      <li><a href="mailto:plataformadelingua@gmail.com" target="_blank">E-mail <i class="fas fa-envelope"></i></a></li>
+                    </ul>
+                </details>
+            </li>
+            <% if (isAdmin) { %>
+              <li>
+                <details>
+                  <summary><i class="fas fa-bars"></i> Menu</summary>
+                  <ul>
+                      <li><a href="/cadastra_videos"><i class="fas fa-chalkboard"></i> Cadastrar Aulas</a></li>
+                      <li><a href="/listar_usuarios"><i class="fas fa-users"></i> Ver Usuários</a></li>
+                      <li><a href="/video_list"><i class="fas fa-video"></i> Lista de Videos</a></li>
+                  </ul>
+                </details>
+            </li>
+            <% } %>
+            <li class="logout"><a href="/logout" style="color: rgb(240, 129, 129);"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="mensagemSucessosAvaliacaoComentarrio" id="mensagemSucessosAvaliacaoComentarrio"></div>
+    <div class="mensagemErroAvaliacaoComentarrio" id="mensagemErroAvaliacaoComentarrio"></div>
+    <!-- <h1 class="aulas">AULAS NÍVEL 01</h1> -->
+    <% if (err) { %>
+      <p>Erro ao carregar vídeos: <%= err.message %></p>
+    <% } else { %>
+      <% if (videos && videos.length > 0) { %>
+        <div class="video-container">
+          <% videos.forEach(v => { %>
+            <div class="video-card">
+              <h2><%= v.titulo %></h2>
+              <p><%= v.descricao %></p>
+              <div class="video-wrapper">
+                <iframe src="<%= v.link %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="avaliacao">
+                <label class="total-cliques-label" style="color: gold;"></label>
+                <input type="radio" name="estrela<%= v.id %>" id="estrela5_<%= v.id %>" value="5"><label for="estrela5_<%= v.id %>"><i class="fas fa-star"></i></label>
+                <input type="radio" name="estrela<%= v.id %>" id="estrela4_<%= v.id %>" value="4"><label for="estrela4_<%= v.id %>"><i class="fas fa-star"></i></label>
+                <input type="radio" name="estrela<%= v.id %>" id="estrela3_<%= v.id %>" value="3"><label for="estrela3_<%= v.id %>"><i class="fas fa-star"></i></label>
+                <input type="radio" name="estrela<%= v.id %>" id="estrela2_<%= v.id %>" value="2"><label for="estrela2_<%= v.id %>"><i class="fas fa-star"></i></label>
+                <input type="radio" name="estrela<%= v.id %>" id="estrela1_<%= v.id %>" value="1"><label for="estrela1_<%= v.id %>"><i class="fas fa-star"></i></label>
+                <label class="media-label" style="color: gold; position: relative; left: -2%;"></label>
+              </div>
+              <div class="botoesContainer oculto">
+                  <button class="enviarAvaliacao">Enviar Avaliação</button>
+                  <button class="voltar">Cancela Avaliação</button>
+              </div>
+              <div class="overlay oculto"></div>
+
+              <div class="avaliacaoPopular"></div>
+              <form id="formulario_comentario_<%= v.id %>">
+                <div class="formularioComentario">
+                  <label for="comentario_<%= v.id %>">Escreva teus comentários</label>
+                  <input type="text" id="comentario_<%= v.id %>" name="comentario">
+                  <button type="submit" title="Enviar comentário para o vídeo <%= v.id %>">Enviar</button>
+                </div> 
+              </form>              
+            </div>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <p>Nenhum vídeo encontrado.</p>
+      <% } %>
+    <% } %>
+  </main>
+  <script src="/javascripts/avaliacao.js"></script>
+  <script src="/javascripts/comentario.js"></script>
+</body>
+</html

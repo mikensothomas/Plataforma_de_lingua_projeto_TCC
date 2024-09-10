@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Plataforma de língua portuguesa para estrangeiros haitianos.</title>
+</head>
+<body>
+    <header>
+        <div class="menu">
+            <span class="hamburger"><i class="fas fa-bars"></i></span>
+            <nav>
+                <ul>
+                    <li><a href="/" class="logo">HT.</a></li>
+                    <li><a href="/cadastro"><i class="fas fa-user-plus"></i>Cadastro</a></li>
+                    <li><a href="/login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                    <li>
+                        <details>
+                            <summary><i class="fas fa-envelope"></i> Contatos</summary>
+                            <ul>
+                                <li><a href="https://wa.me/5549984177437" target="_blank">Whatsapp <i class="fab fa-whatsapp"></i></a></li>
+                                <li><a href="https://chat.whatsapp.com/KcxOOiU5TisKApgKrCjXLu" target="_blank">Grupo <i class="fab fa-whatsapp"></i></a></li>
+                                <li><a href="mailto:plataformadelingua@gmail.com" target="_blank">E-mail <i class="fas fa-envelope"></i></a></li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="mensagemErros" id="mensagemErro"></div>
+    <div class="mensagemSucessos" id="mensagemSucesso"></div>
+    <main>
+        <form id="form_nova_senha">
+            <h1>Redefinição da senha</h1>
+            <p style="font-weight: bold;">Escolha uma senha</p>
+            <input type="password" id="nova_senha" placeholder="Escolha uma senha">
+            <i class="fas fa-eye" id="toggleSenha" style="cursor: pointer; position: absolute; left: 90%; top: 37%;"></i>
+            <p style="font-weight: bold;">Confirme a senha</p>
+            <input type="password" id="confirma_senha" placeholder="Confirme sua senha">
+            <i class="fas fa-eye" id="toggleConSenha" style="cursor: pointer; position: absolute; left: 90%; top: 62%;"></i>
+            <div>
+                <br>
+                <button type="submit">Salvar</button>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 HT. Redes sociais:</p>
+            <ul class="socials">
+                <li><a href="https://www.facebook.com/mikenson.thomas?mibextid=ZbWKwL"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="https://x.com/MikensonT31833?t=9P6ONkE5NOatjRH23HlJNw&s=09"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="http://www.linkedin.com/in/mikenson-thomas"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="https://www.instagram.com/mikenson.thomas"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="javascripts/nova_senha.js"></script>
+</body>
+</html>
