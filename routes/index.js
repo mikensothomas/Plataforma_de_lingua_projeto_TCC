@@ -14,6 +14,29 @@ const flash = require('connect-flash');
 router.use(flash());
 
 require('dotenv').config();
+const app = express();
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+// app.use(flash());
+
+// app.use(session({
+//   secret: process.env.SECRET_KEY,
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: { maxAge: 3 * 60 * 60 * 1000 }
+// }));
+
+// Configura rotas
+const mainRouter = require('./routes/index');
+app.use('/', mainRouter);
 
 const upload = multer({
   storage: multer.memoryStorage(),
