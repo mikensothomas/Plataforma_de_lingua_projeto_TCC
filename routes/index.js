@@ -1,24 +1,3 @@
-// const express = require('express');
-// const router = express.Router();
-// const { Client } = require('pg');
-// const connectDb = require('../bd.js');
-// const multer = require('multer');
-// const bcrypt = require('bcrypt');
-// const { hashPassword } = require('./passwordUtils');
-// const fs = require('fs');
-// const path = require('path');
-// const nodemailer = require('nodemailer');
-// const crypto = require('crypto');
-
-// require('dotenv').config();
-
-// // Rota principal
-// router.get('/', function(req, res) {
-//   res.render('index'); // Renderiza o arquivo index.ejs
-// });
-
-// module.exports = router;
-
 const express = require('express');
 const { Client } = require('pg');
 const connectDb = require('../bd.js');
