@@ -2,6 +2,8 @@ const express = require('express');
 const { Client } = require('pg');
 const connectDb = require('../bd.js');
 const multer = require('multer');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
 const router = express.Router();
 const bcryptjs = require('bcryptjs');
 const { hashPassword } = require('./passwordUtils');
@@ -14,16 +16,13 @@ const flash = require('connect-flash');
 router.use(flash());
 
 require('dotenv').config();
-const app = express();
+// const rou = express();
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+router.use(logger('dev'));
+router.use(express.json());
+router.use(express.urlencoded({ extended: false }));
+router.use(cookieParser());
+router.use(express.static(path.join(__dirname, 'public')));
 
 // app.use(flash());
 
@@ -35,8 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // }));
 
 // Configura rotas
-const mainRouter = require('./routes/index');
-app.use('/', mainRouter);
+// const mainRouter = require('./routes/index');
+// app.use('/', mainRouter);
 
 const upload = multer({
   storage: multer.memoryStorage(),
