@@ -233,12 +233,12 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-const startServer = async () => {
-  await connectDb();
-  app.listen(process.env.PORT, () => {
-    console.log(`Servidor iniciado com sucesso`);
-  });
-};
+// const startServer = async () => {
+//   await connectDb();
+//   app.listen(process.env.PORT, () => {
+//     console.log(`Servidor iniciado com sucesso`);
+//   });
+// };
 
 
 const port = process.env.PORT || 3000;
