@@ -1,0 +1,49 @@
+sudo npm install -g express-generator
+express -e --git Projeto_TCC
+npm install
+npm start
+npm install express pg body-parser
+
+
+psql -h localhost -U postgres
+\l
+\c usuario
+
+CREATE TABLE tabela_usuarios (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    senha VARCHAR(100)
+);
+
+Deletar uma tabela
+
+psql -h localhost -U postgres -d haitianos_brasil
+DROP TABLE tabela_usuarios;
+
+CREATE DATABASE nome_do_banco;
+DROP DATABASE usuario;
+
+psql -h localhost -U postgres -d postgres
+
+SELECT id, titulo01, descricao01, substring(arquivo_video01::text, 1, 50) AS arquivo_video01 FROM videos_nivel01;
+DELETE FROM tabela_usuarios_admin WHERE id = 1;
+ SELECT id, video_id, substring(comentario::text, 1, 20), data AS comentario FROM comentarios;npm install bcrypt
+
+Deletar todas as tabelas
+DO $$ 
+DECLARE
+    r RECORD;
+BEGIN
+    FOR r IN (SELECT tablename FROM pg_tables WHERE schemaname = current_schema()) LOOP
+        EXECUTE 'DROP TABLE IF EXISTS ' || quote_ident(r.tablename) || ' CASCADE';
+    END LOOP;
+END $$;
+
+UPDATE usuarios SET is_admin = TRUE WHERE email = 'mikensonthomas2@gmail.com';
+Neon, vercel
+
+"migrate": "node bd.js migrate deploy",
+"vercel-build": "npm run migrate && npm run build"
+
+"start": "node --watch ./bin/www"

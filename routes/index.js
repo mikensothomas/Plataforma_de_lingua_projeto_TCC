@@ -709,10 +709,6 @@ async function ensureAdmin(req, res, next) {
   }
 }
 
-// router.get('/login', (req, res) => {
-//   res.render('login', { message: req.flash('error') });
-// });
-
 router.post('/login', async (req, res) => {
   const { email, senha } = req.body;
 
