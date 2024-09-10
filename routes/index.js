@@ -24,7 +24,7 @@ const { Client } = require('pg');
 const connectDb = require('../bd.js');
 const multer = require('multer');
 const router = express.Router();
-// const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 const { hashPassword } = require('./passwordUtils');
 const fs = require('fs');
 const path = require('path');
@@ -110,7 +110,7 @@ router.post('/cadastro', async (req, res) => {
 
 async function comparePassword(password, hashedPassword) {
   try {
-    const match = await bcrypt.compare(password, hashedPassword);
+    const match = await bcryptjs.compare(password, hashedPassword);
     return match;
   } catch (error) {
     throw new Error('Erro ao comparar as senhas');
@@ -530,38 +530,38 @@ router.post('/recupera_senha', async (req, res) => {
     }
 });
 
-// router.post('/atualiza_senha', async (req, res) => {
-//     const { token, novaSenha } = req.body;
+router.post('/atualiza_senha', async (req, res) => {
+    const { token, novaSenha } = req.body;
 
-//     try {
-//         const hashedPassword = await bcrypt.hash(novaSenha, 10);
+    try {
+        const hashedPassword = await bcryptjs.hash(novaSenha, 10);
 
-//         const client = await connectDb();
+        const client = await connectDb();
 
-//         const query = `SELECT * FROM usuarios WHERE reset_token = $1 AND reset_token_expires > $2;`;
-//         const values = [token, Date.now()];
-//         const result = await client.query(query, values);
+        const query = `SELECT * FROM usuarios WHERE reset_token = $1 AND reset_token_expires > $2;`;
+        const values = [token, Date.now()];
+        const result = await client.query(query, values);
 
-//         if (result.rows.length > 0) {
-//             const updateQuery = `
-//                 UPDATE usuarios
-//                 SET senha = $1, reset_token = NULL, reset_token_expires = NULL
-//                 WHERE reset_token = $2;
-//             `;
-//             const updateValues = [hashedPassword, token];
-//             await client.query(updateQuery, updateValues);
+        if (result.rows.length > 0) {
+            const updateQuery = `
+                UPDATE usuarios
+                SET senha = $1, reset_token = NULL, reset_token_expires = NULL
+                WHERE reset_token = $2;
+            `;
+            const updateValues = [hashedPassword, token];
+            await client.query(updateQuery, updateValues);
 
-//             res.status(200).send("Senha atualizada com sucesso");
-//         } else {
-//             res.status(400).send("Token inválido ou expirado");
-//         }
+            res.status(200).send("Senha atualizada com sucesso");
+        } else {
+            res.status(400).send("Token inválido ou expirado");
+        }
 
-//         await client.end();
-//     } catch (error) {
-//         console.error("Erro ao atualizar a senha:", error.message, error.stack);
-//         res.status(500).send("Erro ao atualizar a senha");
-//     }
-// });
+        await client.end();
+    } catch (error) {
+        console.error("Erro ao atualizar a senha:", error.message, error.stack);
+        res.status(500).send("Erro ao atualizar a senha");
+    }
+});
 
 router.get('/video_list', async (req, res) => {
   let client;
