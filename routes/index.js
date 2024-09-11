@@ -1,23 +1,3 @@
-// const express = require('express');
-// const { Client } = require('pg');
-// const connectDb = require('../bd.js');
-// const multer = require('multer');
-// const logger = require('morgan');
-// const cookieParser = require('cookie-parser');
-// const router = express.Router();
-// const bcryptjs = require('bcryptjs');
-// const { hashPassword } = require('./passwordUtils');
-// const fs = require('fs');
-// const path = require('path');
-// const session = require('express-session');
-// const nodemailer = require('nodemailer');
-// const crypto = require('crypto');
-// const flash = require('connect-flash');
-// router.use(flash());
-
-// require('dotenv').config();
-// // const rou = express();
-
 const express = require('express');
 const { Client } = require('pg');
 const connectDb = require('../bd.js');
@@ -46,7 +26,7 @@ router.use(session({
   secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 3 * 60 * 60 * 1000 }  // Sessão válida por 3 horas
+  cookie: { maxAge: 3 * 60 * 60 * 1000 }
 }));
 
 router.use(flash());
@@ -64,7 +44,7 @@ router.get('/login', (req, res) => {
     res.render('login', { message: req.flash('error') });
 });
 
-router.get('/home', function(req, res) {
+router.get('/home', ensureAuthenticated, function(req, res) {
   res.render('home');
 });
 
@@ -76,7 +56,7 @@ router.get('/cadastro', function(req, res) {
   res.render('cadastro');
 });
 
-router.get('/cadastra_videos', function(req, res) {
+router.get('/cadastra_videos', ensureAuthenticated, ensureAdmin, function(req, res) {
   res.render('cadastra_videos');
 });
 
@@ -88,21 +68,9 @@ router.get('/recupera_senha', function(req, res) {
   res.render('recupera_senha');
 });
 
-router.get('/acesso_privado', function(req, res) {
-  res.render('acesso_privado');
-})
-
-router.get('/login_admin', function(req, res) {
-  res.render('login_admin');
-})
-
 router.get('/comentarios', function(req, res) {
   res.render('comentarios');
 })
-
-router.get('/certeza', function(req, res) {
-  res.render('certeza');
-});
 
 router.post('/cadastro', async (req, res) => {
   const { nome, email, senha } = req.body;
@@ -130,6 +98,72 @@ router.post('/cadastro', async (req, res) => {
   }
 });
 
+router.post('/login', async (req, res) => {
+  const { email, senha } = req.body;
+
+  try {
+    const client = await connectDb();
+    
+    const query = 'SELECT * FROM usuarios WHERE email = $1';
+    const result = await client.query(query, [email]);
+
+    if (result.rows.length > 0) {
+      const usuario = result.rows[0];
+      const passwordMatch = await bcryptjs.compare(senha, usuario.senha);
+
+      if (passwordMatch) {
+        req.session.user = { id: usuario.id, email: usuario.email };
+        return res.redirect('/home');
+      }
+    }
+    req.flash('error', 'Email ou senha inválido');
+    alert("Email ou senha inválido");
+    res.redirect('/login');
+    await client.end();
+  } catch (error) {
+    console.error("Erro ao consultar o banco de dados:", error);
+    res.status(500).send("Erro ao consultar o banco de dados");
+  }
+});
+
+function ensureAuthenticated(req, res, next) {
+  if (req.session.user) {
+    return next();
+  }
+  res.redirect('/login');
+}
+
+async function ensureAdmin(req, res, next) {
+  const client = await connectDb();
+
+  try {
+
+    const queryAdminCheck = 'SELECT is_admin FROM usuarios WHERE id = $1';
+    const resultAdminCheck = await client.query(queryAdminCheck, [req.session.user.id]);
+
+    if (resultAdminCheck.rows.length === 0 || !resultAdminCheck.rows[0].is_admin) {
+      await client.end();
+      return res.redirect('/home');
+    }
+
+    next();
+  } catch (err) {
+    console.error('Erro ao verificar se o usuário é administrador:', err);
+    return res.status(500).send("Erro interno do servidor");
+  } finally {
+    await client.end();
+  }
+}
+
+router.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).send("Erro ao encerrar a sessão");
+    }
+    res.redirect('/login');
+  });
+});
+
 async function comparePassword(password, hashedPassword) {
   try {
     const match = await bcryptjs.compare(password, hashedPassword);
@@ -138,6 +172,18 @@ async function comparePassword(password, hashedPassword) {
     throw new Error('Erro ao comparar as senhas');
   }
 }
+
+// router.use(function(req, res, next) {
+//   next(createError(404));
+// });
+
+router.use(function(err, req, res, next) {
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  res.status(err.status || 500);
+  res.render('error');
+});
 
 router.post('/videos', async (req, res) => {
   const { titulo, descricao, link, nivel } = req.body;
@@ -200,7 +246,7 @@ router.post('/comentarios/:id', async (req, res) => {
   }
 });
 
-router.get('/aulas_nivel01', async (req, res) => {
+router.get('/aulas_nivel01', ensureAuthenticated, async (req, res) => {
   try {
     const client = await connectDb();
 
@@ -243,7 +289,7 @@ router.get('/aulas_nivel01', async (req, res) => {
   }
 });
 
-router.get('/aulas_nivel02', async (req, res) => {
+router.get('/aulas_nivel02', ensureAuthenticated, async (req, res) => {
   try {
     const client = await connectDb();
 
@@ -289,7 +335,7 @@ router.get('/aulas_nivel02', async (req, res) => {
   }
 });
 
-router.get('/aulas_nivel03', async (req, res) => {
+router.get('/aulas_nivel03', ensureAuthenticated, async (req, res) => {
   try {
     const client = await connectDb();
 
@@ -335,7 +381,7 @@ router.get('/aulas_nivel03', async (req, res) => {
   }
 });
 
-router.get('/lista_comentario/:id', async (req, res) => {
+router.get('/lista_comentario/:id', ensureAuthenticated, ensureAdmin, async (req, res) => {
   const videoId = req.params.id;
   let client;
   try {
@@ -369,7 +415,7 @@ router.get('/lista_comentario/:id', async (req, res) => {
   }
 });
 
-router.get('/listar_usuarios', async (req, res) => {
+router.get('/listar_usuarios', ensureAuthenticated, ensureAdmin, async (req, res) => {
   let client;
   try {
     const client = await connectDb();
@@ -585,7 +631,7 @@ router.post('/atualiza_senha', async (req, res) => {
     }
 });
 
-router.get('/video_list', async (req, res) => {
+router.get('/video_list', ensureAuthenticated, ensureAdmin, async (req, res) => {
   let client;
   try {
     const client = await connectDb();
@@ -714,82 +760,6 @@ router.post('/editar_video/:id', async (req, res) => {
   }
 });
 
-
-
-
-// router.use(session({
-//   secret: process.env.SECRET_KEY,
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: { maxAge: 3 * 60 * 60 * 1000 }
-// }));
-
-function ensureAuthenticated(req, res, next) {
-  if (req.session.user) {
-    return next();
-  }
-  res.redirect('/login');
-}
-
-async function ensureAdmin(req, res, next) {
-  const client = await connectDb();
-
-  try {
-
-    const queryAdminCheck = 'SELECT is_admin FROM usuarios WHERE id = $1';
-    const resultAdminCheck = await client.query(queryAdminCheck, [req.session.user.id]);
-
-    if (resultAdminCheck.rows.length === 0 || !resultAdminCheck.rows[0].is_admin) {
-      await client.end();
-      return res.redirect('/home');
-    }
-
-    next();
-  } catch (err) {
-    console.error('Erro ao verificar se o usuário é administrador:', err);
-    return res.status(500).send("Erro interno do servidor");
-  } finally {
-    await client.end();
-  }
-}
-
-router.post('/login', async (req, res) => {
-  const { email, senha } = req.body;
-
-  try {
-    const client = await connectDb();
-    
-    const query = 'SELECT * FROM usuarios WHERE email = $1';
-    const result = await client.query(query, [email]);
-
-    if (result.rows.length > 0) {
-      const usuario = result.rows[0];
-      const passwordMatch = await bcryptjs.compare(senha, usuario.senha);
-
-      if (passwordMatch) {
-        req.session.user = { id: usuario.id, email: usuario.email };
-        return res.redirect('/home');
-      }
-    }
-    req.flash('error', 'Email ou senha inválido');
-    alert("Email ou senha inválido");
-    res.redirect('/login');
-    await client.end();
-  } catch (error) {
-    console.error("Erro ao consultar o banco de dados:", error);
-    res.status(500).send("Erro ao consultar o banco de dados");
-  }
-});
-
-router.get('/logout', (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      return res.status(500).send("Erro ao encerrar a sessão");
-    }
-    res.redirect('/login');
-  });
-});
-
 router.post('/avaliar', async (req, res) => {
   const { video_id, avaliacao } = req.body;
   const client = await connectDb();
@@ -880,32 +850,6 @@ router.get('/avaliacao-media', async (req, res) => {
   } finally {
     await client.end();
   }
-});
-
-router.use('/cadastra_videos', ensureAuthenticated, ensureAdmin);
-router.use('/home', ensureAuthenticated);
-router.use('/lista_comentario', ensureAuthenticated, ensureAdmin);
-router.use('/listar_usuarios', ensureAuthenticated, ensureAdmin);
-router.use('/atualizar_usuario', ensureAuthenticated, ensureAdmin);
-router.use('/aulas_nivel01', ensureAuthenticated);
-router.use('/aulas_nivel02', ensureAuthenticated);
-router.use('/aulas_nivel03', ensureAuthenticated);
-router.use('/video_list', ensureAuthenticated, ensureAdmin);
-
-
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
-
-router.use(function(req, res, next) {
-  next(createError(404));
-});
-
-router.use(function(err, req, res, next) {
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  res.status(err.status || 500);
-  res.render('error');
 });
 
 module.exports = router;
