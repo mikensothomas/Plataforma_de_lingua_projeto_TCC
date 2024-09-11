@@ -15,7 +15,7 @@ body {
 
 .header {
     margin-bottom: 40px;
-    margin-top: 80px;
+    margin-top: 70px;
 }
 
 .header h1 {
@@ -60,6 +60,7 @@ body {
 .header p {
     font-size: 1.2em;
     color: white;
+    margin-top: 4%;
 }
 
 .levels {
@@ -67,7 +68,7 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 80px;
+    margin-top: 10px;
     gap: 20px;
     max-width: 1200px;
     margin: 80px auto;
@@ -92,6 +93,8 @@ body {
 
 .level img {
     max-width: 100px;
+    height: 150px;
+    object-fit: cover;
     margin-bottom: 20px;
 }
 
