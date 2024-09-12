@@ -449,6 +449,7 @@ body {
   @media (max-width: 768px) {
     .senha {
       left: 0;
+      text-align: center;
     }
   
     form {
