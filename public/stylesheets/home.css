@@ -138,8 +138,14 @@ body {
 }
 
 @media (max-width: 600px) {
+
+    .levels {
+        justify-content: center;
+    }
+
     .level {
-        width: 60%;
+        width: 80%;
+        max-width: 400px;
     }
 }
 
