@@ -84,7 +84,7 @@ header nav ul li details ul li a:hover {
     background-color: #555;
 }
 
-.equipe {
+/* .equipe {
     color: white;
     text-align: center;
     padding: 8px;
@@ -146,6 +146,67 @@ header nav ul li details ul li a:hover {
         flex-direction: column;
         align-items: center;
         margin-top: -1%;
+    }
+
+    .mikensonthomasinfo {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+} */
+
+.equipe {
+    color: white;
+    text-align: center;
+    padding: 8px;
+    background-color: #00796b;
+}
+
+.equipe_desenvolvedor {
+    display: flex;
+    justify-content: space-around; /* Espaçamento uniforme entre os itens */
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin-top: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.mikensonthomasinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd;
+    background-color: #f7f1f1;
+    transition: transform 0.3s ease-in-out;
+    box-sizing: border-box;
+    max-width: 300px; /* Limita a largura de cada card */
+    padding: 20px;
+    margin: 10px; /* Espaçamento entre os cards */
+}
+
+.mikensonthomasinfo img {
+    width: 140px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.mikensonthomasinfo h1 {
+    font-size: 20px;
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+.mikensonthomasinfo h2, .mikensonthomasinfo h3, .mikensonthomasinfo h4 {
+    margin: 5px 0;
+    color: #555;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .equipe_desenvolvedor {
+        flex-direction: column;
+        align-items: center;
     }
 
     .mikensonthomasinfo {
