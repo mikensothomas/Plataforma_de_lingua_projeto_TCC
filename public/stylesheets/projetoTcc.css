@@ -84,76 +84,6 @@ header nav ul li details ul li a:hover {
     background-color: #555;
 }
 
-/* .equipe {
-    color: white;
-    text-align: center;
-    padding: 8px;
-    background-color: #00796b;
-}
-
-.equipe_desenvolvedor {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 20px;
-    margin-top: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.mikensonthomasinfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    border: 1px solid #ddd;
-    background-color: #f7f1f1;
-    transition: transform 0.3s ease-in-out;
-    box-sizing: border-box;
-    max-width: 380px;
-    margin-top: -2%;
-}
-
-.mikensonthomasinfo {
-    transform: scale(1.1, 1);
-}
-
-.mikensonthomasinfo img {
-    width: 140px;
-    height: auto;
-    margin-bottom: 10px;
-}
-
-.mikensonthomasinfo h1 {
-    font-size: 20px;
-    margin: 10px 0 5px;
-    color: #333;
-}
-
-.mikensonthomasinfo h2, .mikensonthomasinfo h3, .mikensonthomasinfo h4 {
-    margin: 5px 0;
-    color: #555;
-    text-align: center;
-}
-
-.equipe_desenvolvedor {
-    margin-top: 30px;
-}
-
-@media (max-width: 768px) {
-    .equipe_desenvolvedor {
-        flex-direction: column;
-        align-items: center;
-        margin-top: -1%;
-    }
-
-    .mikensonthomasinfo {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-} */
-
 .equipe {
     color: white;
     text-align: center;
@@ -163,44 +93,39 @@ header nav ul li details ul li a:hover {
 
 .equipe_desenvolvedor {
     display: flex;
-    justify-content: space-around; /* Espaçamento uniforme entre os itens */
-    align-items: flex-start;
+    justify-content: space-around;
     flex-wrap: wrap;
+    gap: 20px;
     padding: 20px;
-    margin-top: 30px;
     max-width: 1200px;
-    margin: 0 auto;
 }
 
 .mikensonthomasinfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #ddd;
-    background-color: #f7f1f1;
-    transition: transform 0.3s ease-in-out;
-    box-sizing: border-box;
-    max-width: 300px; /* Limita a largura de cada card */
-    padding: 20px;
-    margin: 10px; /* Espaçamento entre os cards */
+    text-align: center;
+    width: 270px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    transition: width 0.3s ease, box-shadow 0.3s ease;
+    width: 340px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
+
 
 .mikensonthomasinfo img {
-    width: 140px;
-    height: auto;
-    margin-bottom: 10px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
 }
 
-.mikensonthomasinfo h1 {
-    font-size: 20px;
-    margin: 10px 0 5px;
-    color: #333;
-}
-
-.mikensonthomasinfo h2, .mikensonthomasinfo h3, .mikensonthomasinfo h4 {
-    margin: 5px 0;
-    color: #555;
-    text-align: center;
+.mikensonthomasinfo h1, 
+.mikensonthomasinfo h2, 
+.mikensonthomasinfo h3, 
+.mikensonthomasinfo h4 {
+    margin: 10px 0;
 }
 
 @media (max-width: 768px) {
@@ -211,7 +136,12 @@ header nav ul li details ul li a:hover {
 
     .mikensonthomasinfo {
         width: 100%;
-        margin-bottom: 20px;
+        max-width: 300px;
+    }
+
+    .mikensonthomasinfo img {
+        width: 150px;
+        height: 150px;
     }
 }
 
