@@ -58,7 +58,6 @@ header nav ul li details ul {
     padding: 10px;
     list-style: none;
     margin: 0;
-    /* border-radius: 5px; */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -85,6 +84,13 @@ header nav ul li details ul li a:hover {
     background-color: #555;
 }
 
+.equipe {
+    color: white;
+    text-align: center;
+    padding: 8px;
+    background-color: #00796b;
+}
+
 .equipe_desenvolvedor {
     display: flex;
     justify-content: space-between;
@@ -102,7 +108,7 @@ header nav ul li details ul li a:hover {
     align-items: center;
     flex: 1;
     border: 1px solid #ddd;
-    background-color: #f9f9f9;
+    background-color: #f7f1f1;
     transition: transform 0.3s ease-in-out;
     box-sizing: border-box;
     max-width: 380px;
@@ -114,7 +120,7 @@ header nav ul li details ul li a:hover {
 }
 
 .mikensonthomasinfo img {
-    width: 150px;
+    width: 140px;
     height: auto;
     margin-bottom: 10px;
 }
@@ -139,7 +145,7 @@ header nav ul li details ul li a:hover {
     .equipe_desenvolvedor {
         flex-direction: column;
         align-items: center;
-        margin-top: 14%;
+        margin-top: -1%;
     }
 
     .mikensonthomasinfo {
@@ -232,7 +238,12 @@ html, body {
     background-color: #00796b;
     color: white;
     margin-bottom: 10px;
-    /* border-radius: 10%; */
+}
+
+@media (max-width: 600px){
+    .facilitando {
+        margin-top: -16%;
+    }
 }
 
 .facilitando h1 {
@@ -245,7 +256,6 @@ html, body {
     background-color: #fff;
     padding: 20px;
     margin-bottom: 18px;
-    /* border-radius: 8px; */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
