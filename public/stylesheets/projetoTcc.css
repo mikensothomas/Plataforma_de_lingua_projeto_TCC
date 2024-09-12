@@ -256,57 +256,50 @@ html, body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.footer-content {
+footer {
     background-color: #333;
+    padding: 20px 50px;
     color: white;
-    padding: 15px;
     text-align: center;
-    position: relative;
-    bottom: 0;
-    width: 97%;
-    margin-top: auto;
-    border-radius: 8px;
-}
-
-.socials {
-    list-style: none;
-    padding: 0;
+    flex-shrink: 0;
+    margin-top: -1.5%;
+  }
+  
+  .footer-content {
     display: flex;
-    justify-content: center;
-}
-
-.socials li {
-    margin: 0 10px;
-}
-
-.socials a {
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  
+  .footer-content p {
+    margin: 0;
+  }
+  
+  .footer-content .socials {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .footer-content .socials li a {
     color: white;
-    font-size: 1.5em;
+    font-size: 24px;
+    text-decoration: none;
     transition: color 0.3s;
-}
-
-.socials a:hover {
-    color: #00aced;
-}
-
-@media screen and (max-width: 768px) {
-    .facilitando h1 {
-        font-size: 2em;
-    }
-
-    .container {
-        padding: 10px;
-    }
-
-    .bem_vindo {
-        padding: 15px;
-    }
-
-    .socials a {
-        font-size: 1.2em;
-    }
-
+  }
+  
+  .footer-content .socials li a:hover {
+    color: #ff5722;
+  }
+  
+  @media (max-width: 600px) {
     .footer-content {
-        padding: 15px;
+      flex-direction: column;
+      text-align: center;
     }
-}
+  }
