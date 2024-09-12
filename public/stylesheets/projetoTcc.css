@@ -58,7 +58,7 @@ header nav ul li details ul {
     padding: 10px;
     list-style: none;
     margin: 0;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -85,73 +85,66 @@ header nav ul li details ul li a:hover {
     background-color: #555;
 }
 
-
-.mikensonthomasinfo {
-    position: absolute;
-    top: 6px;
-    right: 200px;
-    width: 150px;
-    padding: 10px;
-    background-color: #004F71;
-    color: #FFFFFF;
-    border: 2px solid #ccc;
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    font-family: Arial, sans-serif;
-    transition: all 0.3s ease; 
+.equipe_desenvolvedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin-top: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.mikensonthomasinfo h1,
-.mikensonthomasinfo h2, 
-.mikensonthomasinfo h3, 
-.mikensonthomasinfo h4 {
-    font-size: 10px;
-    margin: 5px 0;
+.mikensonthomasinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease-in-out;
+    box-sizing: border-box;
+    max-width: 380px;
+    margin-top: -2%;
+}
+
+.mikensonthomasinfo {
+    transform: scale(1.1, 1);
 }
 
 .mikensonthomasinfo img {
-    width: 50px;
+    width: 150px;
     height: auto;
-    border-radius: 50%;
-    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mikensonthomasinfo h1 {
+    font-size: 20px;
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+.mikensonthomasinfo h2, .mikensonthomasinfo h3, .mikensonthomasinfo h4 {
+    margin: 5px 0;
+    color: #555;
+    text-align: center;
+}
+
+.equipe_desenvolvedor {
+    margin-top: 30px;
 }
 
 @media (max-width: 768px) {
-    .mikensonthomasinfo {
-        top: 10px;
-        right: 50px;
-        width: 120px;
+    .equipe_desenvolvedor {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 14%;
     }
-    
-    .mikensonthomasinfo h1,
-    .mikensonthomasinfo h2, 
-    .mikensonthomasinfo h3, 
-    .mikensonthomasinfo h4 {
-        font-size: 10px;
-    }
-    
-    .mikensonthomasinfo img {
-        width: 40px;
-    }
-}
 
-@media (max-width: 480px) {
     .mikensonthomasinfo {
-        top: 1px;
-        right: 118px;
-        width: 100px;
-    }
-    
-    .mikensonthomasinfo h1,
-    .mikensonthomasinfo h2, 
-    .mikensonthomasinfo h3, 
-    .mikensonthomasinfo h4 {
-        font-size: 8px;
-    }
-    
-    .mikensonthomasinfo img {
-        width: 35px;
+        width: 100%;
+        margin-bottom: 20px;
     }
 }
 
@@ -239,7 +232,7 @@ html, body {
     background-color: #00796b;
     color: white;
     margin-bottom: 10px;
-    border-radius: 10%;
+    /* border-radius: 10%; */
 }
 
 .facilitando h1 {
@@ -252,7 +245,7 @@ html, body {
     background-color: #fff;
     padding: 20px;
     margin-bottom: 18px;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
