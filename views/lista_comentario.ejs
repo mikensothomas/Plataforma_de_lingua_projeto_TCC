@@ -28,12 +28,13 @@
     <% } else { %>
       <% if (lista_comentario && lista_comentario.length > 0) { %>
         <div style="position: relative; top: 50px; text-align: center; color: white;">
-          <span>Esse vídeo tem ID:</span>
-          <span><%= lista_comentario[0].video_id %></span>
+          <!-- <span>Esse vídeo tem ID:</span>
+          <span><%= lista_comentario[0].video_id %></span> -->
         </div>
         <div class="comentario-header">
           <span>ID</span>
           <span>Comentário</span>
+          <span>Vídeo_id</span>
           <span>Data</span>
         </div>
         <% lista_comentario.forEach(comentario => { %>
@@ -41,6 +42,7 @@
             <div class="comentario-content">
               <span><%= comentario.id %></span>
               <span><%= comentario.comentario %></span>
+              <span><%= comentario.video_id%></span>
               <span><%= comentario.data_formatada %></span>
             </div>
           </div>
