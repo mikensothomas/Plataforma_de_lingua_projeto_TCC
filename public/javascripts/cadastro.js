@@ -24,6 +24,7 @@ document.getElementById('cadastroForm').addEventListener('submit', async functio
     const senha = document.getElementById('senha').value;
     const con_senha = document.getElementById('con_senha').value;
     const mensagemErro = document.getElementById('mensagemErro');
+    const submitButton = document.querySelector('button[type="submit"]');
     
     function exibirMensagem(mensagem) {
         mensagemErro.textContent = mensagem;
@@ -61,6 +62,9 @@ document.getElementById('cadastroForm').addEventListener('submit', async functio
         return;
     }
 
+    submitButton.disabled = true;
+    submitButton.textContent = "Aguarde a resposta";
+
     try {
         const response = await fetch('/cadastro', {
             method: 'POST',
@@ -77,6 +81,8 @@ document.getElementById('cadastroForm').addEventListener('submit', async functio
             window.location.href = "/login";
         } else {
             exibirMensagem("Esse email já exixte no banco de dados");
+            submitButton.disabled = false;
+            submitButton.textContent = "Salvar";
         }
     } catch (error) {
         console.log("Erro ao enviar dados:", error);

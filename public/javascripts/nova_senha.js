@@ -22,6 +22,7 @@ document.getElementById('form_nova_senha').addEventListener('submit', async func
     const novaSenha = document.getElementById('nova_senha').value;
     const confirmaSenha = document.getElementById('confirma_senha').value;
     const mensagemErro = document.getElementById('mensagemErro');
+    const submitButton = document.querySelector('button[type="submit"]');
 
     function exibirMensagem(mensagem) {
         mensagemErro.textContent = mensagem;
@@ -54,6 +55,9 @@ document.getElementById('form_nova_senha').addEventListener('submit', async func
 
     const token = new URLSearchParams(window.location.search).get('token');
 
+    submitButton.disabled = true;
+    submitButton.textContent = "Aguarda a resposta";
+
     try {
         const response = await fetch('/atualiza_senha', {
             method: 'POST',
@@ -68,6 +72,8 @@ document.getElementById('form_nova_senha').addEventListener('submit', async func
             window.location.href = '/login';
         } else {
             exibirMensagem("Erro ao atualizar a senha.");
+            submitButton.disabled = false;
+            submitButton.textContent = "Salvar";
         }
     } catch (error) {
         console.error("Erro ao enviar dados:", error);

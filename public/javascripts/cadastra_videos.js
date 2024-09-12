@@ -7,6 +7,7 @@ document.getElementById('videosForm01').addEventListener('submit', async functio
     const nivel = document.querySelector('input[name="nivel"]:checked');
     const mensagemSucessosCadastroVideo = document.getElementById('mensagemSucessosCadastroVideo');
     const mensagemErroCadastroVideo = document.getElementById('mensagemErroCadastroVideo');
+    const submitButton = document.querySelector('button[type="submit"]');
 
     function exibirMensagemErro(mensagemErro) {
         mensagemErroCadastroVideo.textContent = mensagemErro;
@@ -36,6 +37,9 @@ document.getElementById('videosForm01').addEventListener('submit', async functio
         nivel: nivel.value
     };
 
+    submitButton.disabled = true;
+    submitButton.textContent = "Aguarda a resposta";
+
     try {
         const response = await fetch('/videos', {
             method: 'POST',
@@ -50,9 +54,13 @@ document.getElementById('videosForm01').addEventListener('submit', async functio
             console.log('Vídeo cadastrado com sucesso:', result);
             exibirMensagemSucesso("Vídeo cadastrado com sucesso");
             document.getElementById('videosForm01').reset();
+            submitButton.disabled = false;
+            submitButton.textContent = "Cadastrar";
         } else {
             const errorMessage = await response.text();
             alert(errorMessage);
+            submitButton.disabled = false;
+            submitButton.textContent = "Cadastrar";
         }
     } catch (error) {
         console.error("Erro ao enviar dados:", error);

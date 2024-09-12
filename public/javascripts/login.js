@@ -45,6 +45,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const email = document.getElementById('email').value;
     const senha = document.getElementById('senha').value;
     const mensagemErro = document.getElementById('mensagemErro');
+    const submitButton = document.querySelector('button[type="submit"]');
 
     function exibirMensagem(mensagem) {
         mensagemErro.textContent = mensagem;
@@ -70,6 +71,9 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         return;
     }
 
+    submitButton.disabled = true;
+    submitButton.textContent = "Aguarda a resposta";
+
     try {
         const response = await fetch('/login', {
             method: 'POST',
@@ -87,6 +91,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             window.location.href = '/home';
         } else {
             exibirMensagem("Email ou senha inválido");
+            submitButton.disabled = false;
+            submitButton.textContent = "Entrar";
         }
     } catch (error) {
         console.error("Erro ao enviar dados:", error);

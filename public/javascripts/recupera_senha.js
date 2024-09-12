@@ -4,6 +4,7 @@ document.getElementById('form_recupera_senha').addEventListener('submit', async 
     const getemail = document.getElementById('email').value.trim();
     const mensagemErro = document.getElementById('mensagemErro');
     const mensagemSucessos = document.getElementById('mensagemSucessos');
+    const submitButton = document.querySelector('button[type="submit"]');
 
     function exibirMensagemErros(mensagem) {
         mensagemErro.textContent = mensagem;
@@ -16,9 +17,9 @@ document.getElementById('form_recupera_senha').addEventListener('submit', async 
     function exibirMensagemSucessos(mensagem) {
         mensagemSucessos.textContent = mensagem;
         mensagemSucessos.style.opacity = '1';
-        setTimeout(() =>{
-            mensagemSucessos.style.opacity = '0';
-        }, 20000);
+        // setTimeout(() =>{
+        //     mensagemSucessos.style.opacity = '0';
+        // }, 20000);
     }
 
     if (!getemail) {
@@ -27,6 +28,8 @@ document.getElementById('form_recupera_senha').addEventListener('submit', async 
         return;
     }
 
+    submitButton.disabled = true;
+    submitButton.textContent = "Aguarda a resposta";
     try {
         const response = await fetch('/recupera_senha', {
             method: 'POST',
@@ -48,6 +51,8 @@ document.getElementById('form_recupera_senha').addEventListener('submit', async 
             document.getElementById('email').value = '';
         } else {
             exibirMensagemErros("Email inválido.");
+            submitButton.disabled = false;
+            submitButton.textContent = "Enviar";
         }
     } catch (error) {
         console.error("Erro ao enviar dados:", error);
