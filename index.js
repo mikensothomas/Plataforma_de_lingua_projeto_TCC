@@ -26,9 +26,9 @@ app.use('/', mainRouter);
   try {
     const client = await connectDb();
     await criarTabelas(client);
-    console.log("Conectado ao banco de dados e tabelas criadas");
+    console.log("Conectado ao banco de dados");
   } catch (error) {
-    console.error("Erro ao conectar e criar tabelas:", error);
+    console.error("Erro ao conectar ao banco de dados:", error);
   }
 })();
 
