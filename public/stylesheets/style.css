@@ -42,6 +42,10 @@ header nav ul li.logout {
   border-radius: 5px;
 }
 
+header nav ul li.logout:hover {
+  background-color: transparent;
+}
+
 header nav ul li a,
 header nav ul li summary {
   color: white;
