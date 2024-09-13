@@ -171,6 +171,9 @@ header nav ul li details ul li a:hover {
 @media (max-width: 768px) {
     .hamburger {
         display: block;
+        font-size: 24px;
+        cursor: pointer;
+        margin-left: -35px;
     }
 
     header nav ul {

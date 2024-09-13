@@ -33,8 +33,13 @@ header nav ul li {
   margin-right: 10px;
 }
 
-header nav ul li.logout a {
-  margin-right: 0;
+header nav ul li.logout {
+  position: relative;
+  left: 500%;
+  padding: 4px; 
+  background-color: rgb(234, 159, 159);
+  color: white;
+  border-radius: 5px;
 }
 
 header nav ul li a,
@@ -95,10 +100,7 @@ header nav ul li details ul li a:hover {
 }
 
 .hamburger {
-  display: block;
-  font-size: 24px;
-  cursor: pointer;
-  margin-left: -35px;
+  display: none;
 }
 
 .menu {
@@ -109,45 +111,43 @@ header nav ul li details ul li a:hover {
 
 @media (max-width: 768px) {
   .hamburger {
-      display: block;
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: -35px;
   }
 
   header nav ul {
-      flex-direction: column;
-      align-items: flex-start;
-      display: none;
-      width: 100%;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: linear-gradient(to right, #3a7bd5, #3a6073);
+    flex-direction: column;
+    align-items: flex-start;
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: linear-gradient(to right, #3a7bd5, #3a6073);
   }
 
   header nav ul.active {
-      display: flex;
+    display: flex;
   }
 
   header nav ul li {
-      width: 100%;
-      text-align: left;
-      margin-right: 0;
+    width: 100%;
+    text-align: left;
+    margin-right: 0;
   }
 
   header nav ul li.logout {
-      /* text-align: left;
-      padding: 1px;
-      background-color: rgb(102, 33, 33);
-      max-width: 18%;
-      border-radius: 15px; */
-
-      position: absolute; /* ou use fixed se quiser que ele fique fixo na tela */
-      top: -5%; /* ajusta a posição vertical */
-      right: 20%; /* ajusta a posição horizontal */
-      text-align: center; /* centraliza o texto dentro do botão */
-      padding: 5px;
-      background-color: rgb(235, 87, 87);
-      max-width: 18%;
-      border-radius: 15px;
+    position: relative;
+    left: 0;
+    margin: 10px 0;
+    width: auto;
+    text-align: center;
+    background-color: rgb(234, 159, 159);
+    color: white;
+    border-radius: 5px;
+    padding: 4px;
   }
 }
 
