@@ -124,8 +124,8 @@ header nav ul li details ul li a:hover {
   }
 
   header nav ul li {
-    width: 100%;
-    text-align: left;
+    /* width: 100%; */
+    text-align: right;
     margin-right: 0;
   }
 
