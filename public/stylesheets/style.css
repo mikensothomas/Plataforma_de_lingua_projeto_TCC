@@ -95,10 +95,10 @@ header nav ul li details ul li a:hover {
 }
 
 .hamburger {
-  display: none;
+  display: block;
   font-size: 24px;
   cursor: pointer;
-  margin-right: 10px;
+  margin-left: -35px;
 }
 
 .menu {
@@ -134,9 +134,18 @@ header nav ul li details ul li a:hover {
   }
 
   header nav ul li.logout {
-      text-align: left;
+      /* text-align: left;
       padding: 1px;
       background-color: rgb(102, 33, 33);
+      max-width: 18%;
+      border-radius: 15px; */
+
+      position: absolute; /* ou use fixed se quiser que ele fique fixo na tela */
+      top: -5%; /* ajusta a posição vertical */
+      right: 20%; /* ajusta a posição horizontal */
+      text-align: center; /* centraliza o texto dentro do botão */
+      padding: 5px;
+      background-color: rgb(235, 87, 87);
       max-width: 18%;
       border-radius: 15px;
   }
