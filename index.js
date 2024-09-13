@@ -35,6 +35,11 @@ app.get('/', (req, res) => {
   res.render('index', { user });
 });
 
+app.get('/projetoTcc', (req, res) => {
+  const user = req.session.user;
+  res.render('projetoTcc', { user });
+});
+
 const mainRouter = require('./routes/index');
 app.use('/', mainRouter);
 

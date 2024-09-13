@@ -33,19 +33,6 @@ header nav ul li {
   margin-right: 10px;
 }
 
-header nav ul li.logout {
-  position: relative;
-  left: 500%;
-  padding: 4px; 
-  background-color: rgb(234, 159, 159);
-  color: white;
-  border-radius: 5px;
-}
-
-header nav ul li.logout:hover {
-  background-color: transparent;
-}
-
 header nav ul li a,
 header nav ul li summary {
   color: white;
