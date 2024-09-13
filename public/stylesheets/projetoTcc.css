@@ -192,13 +192,14 @@ header nav ul li details ul li a:hover {
     }
 
     header nav ul li {
-        width: 100%;
+        /* width: 100%; */
         text-align: left;
         margin-right: 0;
     }
 
     header nav ul li.logout {
-        text-align: right;
+        text-align: left;
+        
     }
 
     header nav ul li details ul {
