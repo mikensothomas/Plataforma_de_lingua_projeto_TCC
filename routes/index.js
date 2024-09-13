@@ -29,6 +29,9 @@ router.use(session({
   cookie: { maxAge: 3 * 60 * 60 * 1000 }
 }));
 
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
+
 router.use(flash());
 
 const upload = multer({

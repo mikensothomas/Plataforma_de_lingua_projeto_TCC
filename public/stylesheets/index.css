@@ -71,7 +71,15 @@ header {
     }
 
     header nav ul li.logout {
-        text-align: right;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 4px; 
+        background-color: rgb(234, 159, 159);
+        color: white;
+        border-radius: 5px;
+        text-align: center;
+        width: auto;
     }
 
     header nav ul li details ul {
