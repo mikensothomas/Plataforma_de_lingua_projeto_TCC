@@ -135,7 +135,6 @@ header nav ul li details ul li a:hover {
   }
 
   header nav ul li {
-    /* width: 100%; */
     text-align: right;
     margin-right: 0;
   }
@@ -157,16 +156,16 @@ main {
   padding: 40px;
 }
 
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   main {
       margin-top: 90px;
   }
-}
+} */
 
 @media (max-width: 768px) {
   .videos-header,
   .videos-content {
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .videos-header span:nth-child(4),
@@ -177,14 +176,14 @@ main {
   .videos-content span:nth-child(6),
   .videos-header span:nth-child(7),
   .videos-content span:nth-child(7) {
-    display: none; /* Esconde colunas menos importantes */
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
   .videos-header,
   .videos-content {
-    grid-template-columns: 1fr; /* Uma coluna para exibir tudo empilhado */
+    grid-template-columns: 1fr;
   }
 }
 

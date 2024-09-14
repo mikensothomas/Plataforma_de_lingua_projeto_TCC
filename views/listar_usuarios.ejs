@@ -29,9 +29,9 @@
       <% if (listar_usuarios && listar_usuarios.length > 0) { %>
         <div class="usuarios-header" style="position: relative; top: 9%;">
           <span>ID</span>
-          <span style="position: relative; left: -13.5%;">Nome</span>
+          <span>Nome</span>
           <span>Email</span>
-          <span style="position: relative; left: -1.5%;">Ação</span>
+          <span>Ação</span>
         </div>
         <div id="usuarios-container" style="position: relative; top: 10%;">
           <% listar_usuarios.forEach(usuarios => { %>
@@ -51,7 +51,7 @@
       <% } %>
     <% } %>
   </main>
-  <footer>
+  <!-- <footer>
     <div class="footer-content">
         <p>&copy; Desenvolvido por Mikenson Thomas</p>
         <ul class="socials">
@@ -63,7 +63,7 @@
           <li><a href="https://www.instagram.com/mikenson.thomas"><i class="fab fa-instagram"></i></a></li>
         </ul>
     </div>
-  </footer>
+  </footer> -->
   <script>
     document.querySelector('.hamburger').addEventListener('click', function() {
       document.querySelector('nav ul').classList.toggle('active');
