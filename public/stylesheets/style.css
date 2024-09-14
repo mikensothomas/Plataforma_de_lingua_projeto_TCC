@@ -156,12 +156,6 @@ main {
   padding: 40px;
 }
 
-/* @media (max-width: 600px) {
-  main {
-      margin-top: 90px;
-  }
-} */
-
 @media (max-width: 768px) {
   .videos-header,
   .videos-content {
@@ -176,7 +170,7 @@ main {
   .videos-content span:nth-child(6),
   .videos-header span:nth-child(7),
   .videos-content span:nth-child(7) {
-    display: none;
+    display: block;
   }
 }
 
