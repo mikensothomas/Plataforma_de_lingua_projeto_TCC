@@ -68,7 +68,8 @@ body {
   
   header nav ul li a:hover,
   header nav ul li summary:hover {
-    background: linear-gradient(to right, #3a7bd5, #3a6073);
+    /* background: linear-gradient(to right, #3a7bd5, #3a6073); */
+    text-decoration-line: none;
   }
   
   header nav ul li details ul {
