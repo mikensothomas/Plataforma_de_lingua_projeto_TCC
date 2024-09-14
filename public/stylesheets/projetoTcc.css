@@ -32,8 +32,13 @@ header nav ul li {
 }
 
 header nav ul li.logout {
-    margin-left: auto;
-    margin-right: 0;
+    position: absolute;
+    right: 8%;
+    background-color: rgb(234, 159, 159);
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    width: auto;
 }
 
 header nav ul li a,
@@ -192,14 +197,18 @@ header nav ul li details ul li a:hover {
     }
 
     header nav ul li {
-        /* width: 100%; */
         text-align: left;
         margin-right: 0;
     }
 
     header nav ul li.logout {
-        text-align: left;
-        
+        position: absolute;
+        right: 21%;
+        background-color: rgb(234, 159, 159);
+        color: white;
+        border-radius: 5px;
+        text-align: center;
+        width: auto;
     }
 
     header nav ul li details ul {
