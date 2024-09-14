@@ -49,11 +49,6 @@ header nav ul li summary {
     display: block;
 }
 
-header nav ul li a:hover,
-header nav ul li summary:hover {
-    background: linear-gradient(to right, #3a7bd5, #3a6073);
-}
-
 header nav ul li details ul {
     display: none;
     position: absolute;
