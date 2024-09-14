@@ -152,6 +152,7 @@ header nav ul li details ul li a:hover {
 
 main {
   position: relative;
+  top: 5%;
   flex-grow: 1;
   padding: 40px;
 }

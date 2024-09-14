@@ -228,10 +228,6 @@ body {
       width: 100%;
       height: 100%;
     }
-
-    .video-wrapper iframe:hover {
-      transform: scale(2);
-    }
     
     
     @media (max-width: 900px) {
