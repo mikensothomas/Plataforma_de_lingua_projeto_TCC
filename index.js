@@ -40,6 +40,36 @@ app.get('/projetoTcc', (req, res) => {
   res.render('projetoTcc', { user });
 });
 
+app.get('/home', async (req, res) => {
+
+  if (req.session.user) {
+    const { email } = req.session.user;
+
+    try {
+      const client = await connectDb();
+      
+      const query = 'SELECT nome FROM usuarios WHERE email = $1';
+      const result = await client.query(query, [email]);
+
+      if (result.rows.length > 0) {
+        const usuario = result.rows[0];
+        const nome = usuario.nome;
+        
+        res.render('home', { nome, email });
+      } else {
+        res.redirect('/login');
+      }
+      
+      await client.end();
+    } catch (error) {
+      console.error("Erro ao consultar o banco de dados:", error);
+      res.status(500).send("Erro ao consultar o banco de dados");
+    }
+  } else {
+    res.redirect('/login');
+  }
+});
+
 const mainRouter = require('./routes/index');
 app.use('/', mainRouter);
 
