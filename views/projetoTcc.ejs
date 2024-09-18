@@ -34,7 +34,7 @@
                     </details>
                 </li>
                 <% if (user) { %>
-                    <li class="logout"><a href="/logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                    <li class="logout"><a href="/logout"><i class="fas fa-sign-out-alt"></i> <%= __('Sair') %></a></li>
                 <% } %>
             </ul>
         </nav>
@@ -100,7 +100,7 @@
         </div>        
         <footer>
             <div class="footer-content">
-                <p>&copy; Desenvolvido por Mikenson Thomas</p>
+                <p><%= __('Desenvolvido por Mikenson Thomas') %></p>
                 <ul class="socials">
                     <li><a href="https://chat.whatsapp.com/KcxOOiU5TisKApgKrCjXLu" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
                     <li><a href="mailto:plataformadelingua@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a></li>
