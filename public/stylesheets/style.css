@@ -152,7 +152,7 @@ header nav ul li details ul li a:hover {
 
 main {
   position: relative;
-  top: 5%;
+  top: 1%;
   flex-grow: 1;
   padding: 40px;
 }
@@ -172,6 +172,13 @@ main {
   .videos-header span:nth-child(7),
   .videos-content span:nth-child(7) {
     display: block;
+  }
+
+  main {
+    position: relative;
+    top: 5%;
+    flex-grow: 1;
+    padding: 40px;
   }
 }
 
