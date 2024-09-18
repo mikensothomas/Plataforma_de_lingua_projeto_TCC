@@ -152,8 +152,41 @@ header nav ul li details ul li a:hover {
     font-weight: bold;
     margin-right: 20px;
     color: white;
-    text-decoration-line: none;
-}
+    text-decoration: none;
+    padding: 5px;
+    background-color: white;
+    border-radius: 60%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .red {
+      color: red;
+  }
+
+  .blue {
+      color: blue;
+  }
+
+
+  @media (max-width: 768px) {
+      .logo {
+          font-size: 20px;
+          padding: 8px;
+          position: relative;
+          left: 3%;
+      }
+  }
+
+  @media (max-width: 576px) {
+      .logo {
+          font-size: 16px;
+          padding: 8px;
+          position: relative;
+          left: 3%;
+      }
+  }
 
 .hamburger {
     display: none;

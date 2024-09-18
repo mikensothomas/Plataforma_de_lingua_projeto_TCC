@@ -25,7 +25,40 @@ header {
     font-weight: bold;
     margin-right: 20px;
     color: white;
-    text-decoration-line: none;
+    text-decoration: none;
+    padding: 5px;
+    background-color: white;
+    border-radius: 60%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: blue;
+}
+
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 20px;
+        padding: 8px;
+        position: relative;
+        left: 3%;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo {
+        font-size: 16px;
+        padding: 8px;
+        position: relative;
+        left: 3%;
+    }
 }
 
 .hamburger {
@@ -126,12 +159,6 @@ nav ul li .lang-toggle {
     display: block;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-nav ul li a:hover,
-nav ul li .lang-toggle:hover {
-    background-color: #3a7bd5;
-    border-radius: 5px;
 }
 
 nav ul li .lang-menu {
