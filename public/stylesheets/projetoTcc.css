@@ -141,31 +141,30 @@ nav ul li .lang-menu li a:hover {
     color: white;
 }
 
-/* Responsividade para telas menores */
 @media (max-width: 768px) {
     nav ul {
-        flex-direction: column; /* Exibição vertical em telas pequenas */
+        flex-direction: column;
     }
 
     nav ul li {
-        width: 100%; /* Ocupa toda a largura disponível */
+        width: 100%;
     }
 
     nav ul li .lang-menu {
-        position: static; /* O menu será exibido abaixo do item de menu */
-        width: 100%; /* Ocupa toda a largura do item */
-        display: block; /* Torna o menu visível */
-        margin-top: 5px; /* Adiciona um espaço acima do menu */
-        box-shadow: none; /* Remove a sombra se necessário */
+        position: static;
+        width: 100%;
+        display: block;
+        margin-top: 5px;
+        box-shadow: none;
     }
     
     nav ul li .lang-toggle {
-        width: 100%; /* Ocupa toda a largura do item de menu */
-        text-align: left; /* Centraliza o texto do botão */
+        width: 100%;
+        text-align: left;
     }
 
     nav ul li .lang-menu li {
-        margin: 0; /* Remove margens laterais dos itens do menu */
+        margin: 0;
     }
 }
 
@@ -260,7 +259,7 @@ nav ul li .lang-menu li a:hover {
           font-size: 20px;
           padding: 6px;
           position: relative;
-          left: 25%;
+          left: 3%;
       }
   }
 
@@ -269,7 +268,7 @@ nav ul li .lang-menu li a:hover {
           font-size: 16px;
           padding: 6px;
           position: relative;
-          left: 25%;
+          left: 3%;
       }
   }
 
