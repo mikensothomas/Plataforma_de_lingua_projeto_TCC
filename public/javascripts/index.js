@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     const langToggle = document.querySelector('.lang-toggle');
     const langMenu = document.querySelector('.lang-menu');
