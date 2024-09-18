@@ -20,6 +20,19 @@
                 <% } %>
                 <li><a href="/cadastro"><i class="fas fa-user-plus"></i> Cadastro</a></li>
                 <li><a href="/home"><i class="fas fa-home"></i> Home</a></li>
+                <li>
+                    </details>
+                        <span class="lang-toggle">
+                            <i class="fas fa-globe"></i> <%= __('Língua') %>
+                        </span>
+                        <ul class="lang-menu">
+                            <li><a href="/lang/en"><%= __('English') %></a></li> 
+                            <li><a href="/lang/pt"><%= __('Português') %></a></li>
+                            <li><a href="/lang/fr"><%= __('Français') %></a></li>
+                            <li><a href="/lang/es"><%= __('Español') %></a></li>
+                        </ul>
+                    </details>
+                </li>
                 <% if (user) { %>
                     <li class="logout"><a href="/logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
                 <% } %>
@@ -98,11 +111,7 @@
                 </ul>
             </div>
         </footer>
+        <script src="/javascripts/projetoTcc.js"></script>
     </div>
-    <script>
-        document.querySelector('.hamburger').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-    </script>
 </body>
 </html>

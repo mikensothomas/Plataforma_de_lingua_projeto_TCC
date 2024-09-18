@@ -16,6 +16,19 @@
                 <li><a href="/" class="logo"><span class="blue">H</span><span class="red">T</span></a></li>
                 <li><a href="/cadastro"><i class="fas fa-user-plus"></i> Cadastro</a></li>
                 <li><a href="/home"><i class="fas fa-home"></i> Home</a></li>
+                <li>
+                  </details>
+                      <span class="lang-toggle">
+                          <i class="fas fa-globe"></i> <%= __('Língua') %>
+                      </span>
+                      <ul class="lang-menu">
+                          <li><a href="/lang/en"><%= __('English') %></a></li> 
+                          <li><a href="/lang/pt"><%= __('Português') %></a></li>
+                          <li><a href="/lang/fr"><%= __('Français') %></a></li>
+                          <li><a href="/lang/es"><%= __('Español') %></a></li>
+                      </ul>
+                  </details>
+                </li>
                 <% if (!user) { %>
                   <li><a href="/login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
                 <% } %>
@@ -27,7 +40,7 @@
 </head>
 <body>
   <main>
-    <h1 style="color: white;">Lista de vídeos aula</h1>
+    <h1 style="color: white; position: relative; top: 1%;">Lista de vídeos aula</h1>
     <% if (err) { %>
       <p>Erro ao carregar vídeo: <%= err.message %></p>
     <% } else { %>
@@ -76,10 +89,6 @@
         </ul>
     </div>
   </footer>
-<script>
-  document.querySelector('.hamburger').addEventListener('click', function() {
-    document.querySelector('nav ul').classList.toggle('active');
-  });
-</script>
+  <script src="/javascripts/video_list.js"></script>
 </body>
 </html>

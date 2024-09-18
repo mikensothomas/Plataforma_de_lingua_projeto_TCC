@@ -15,6 +15,19 @@
             <ul>
                 <li><a href="/" class="logo"><span class="blue">H</span><span class="red">T</span></a></li>
                 <li><a href="/home"><i class="fas fa-home"></i> Home</a></li>
+                <li>
+                    </details>
+                        <span class="lang-toggle">
+                            <i class="fas fa-globe"></i> <%= __('Língua') %>
+                        </span>
+                        <ul class="lang-menu">
+                            <li><a href="/lang/en"><%= __('English') %></a></li> 
+                            <li><a href="/lang/pt"><%= __('Português') %></a></li>
+                            <li><a href="/lang/fr"><%= __('Français') %></a></li>
+                            <li><a href="/lang/es"><%= __('Español') %></a></li>
+                        </ul>
+                    </details>
+                </li>
                 <li class="logout"><a href="/logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
             </ul>
           </nav>

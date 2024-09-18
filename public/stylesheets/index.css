@@ -194,6 +194,33 @@ nav ul li .lang-menu li a:hover {
 }
 
 @media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li .lang-menu {
+        position: static;
+        width: 100%;
+        display: block;
+        margin-top: 5px;
+        box-shadow: none;
+    }
+    
+    nav ul li .lang-toggle {
+        width: 100%;
+        text-align: left;
+    }
+
+    nav ul li .lang-menu li {
+        margin: 0;
+    }
+}
+
+@media (max-width: 768px) {
     header {
         padding: 10px 20px;
         flex-direction: column;

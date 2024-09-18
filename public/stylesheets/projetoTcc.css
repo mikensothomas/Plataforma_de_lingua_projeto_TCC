@@ -84,6 +84,91 @@ header nav ul li details ul li a:hover {
     background-color: #555;
 }
 
+/* Estilos gerais para o menu */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row; /* Exibição horizontal por padrão */
+}
+
+nav ul li {
+    position: relative;
+}
+
+/* Estilo para links e botão de alternância de idioma */
+nav ul li a,
+nav ul li .lang-toggle {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Menu de idiomas */
+nav ul li .lang-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: #3a7bd5;
+    padding: 10px;
+    list-style: none;
+    margin: 0;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+nav ul li .lang-menu li {
+    margin: 5px 0;
+}
+
+nav ul li .lang-menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: block;
+    transition: background-color 0.3s ease;
+    border-radius: 3px;
+}
+
+nav ul li .lang-menu li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Exibição vertical em telas pequenas */
+    }
+
+    nav ul li {
+        width: 100%; /* Ocupa toda a largura disponível */
+    }
+
+    nav ul li .lang-menu {
+        position: static; /* O menu será exibido abaixo do item de menu */
+        width: 100%; /* Ocupa toda a largura do item */
+        display: block; /* Torna o menu visível */
+        margin-top: 5px; /* Adiciona um espaço acima do menu */
+        box-shadow: none; /* Remove a sombra se necessário */
+    }
+    
+    nav ul li .lang-toggle {
+        width: 100%; /* Ocupa toda a largura do item de menu */
+        text-align: left; /* Centraliza o texto do botão */
+    }
+
+    nav ul li .lang-menu li {
+        margin: 0; /* Remove margens laterais dos itens do menu */
+    }
+}
+
 .equipe {
     color: white;
     text-align: center;
@@ -173,18 +258,18 @@ header nav ul li details ul li a:hover {
   @media (max-width: 768px) {
       .logo {
           font-size: 20px;
-          padding: 8px;
+          padding: 6px;
           position: relative;
-          left: 15%;
+          left: 25%;
       }
   }
 
   @media (max-width: 576px) {
       .logo {
           font-size: 16px;
-          padding: 8px;
+          padding: 6px;
           position: relative;
-          left: 15%;
+          left: 25%;
       }
   }
 
