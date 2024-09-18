@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma de língua portuguesa para estrangeiros haitianos.</title>
+    <title><%= __('Plataforma de língua portuguesa para estrangeiros haitianos.') %></title>
     <link rel="stylesheet" href="stylesheets/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -13,31 +13,40 @@
             <span class="hamburger"><i class="fas fa-bars"></i></span>
             <nav>
                 <ul>
-                    <li><a href="/" class="logo">HT.</a></li>
+                    <li><a href="/" class="logo"><%= __('HT.') %></a></li>
                     <% if (!user) { %>
-                        <li><a href="/login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                        <li><a href="/login"><i class="fas fa-sign-in-alt"></i> <%= __('Login') %></a></li>
                     <% } %>
-                    <li><a href="/cadastro"><i class="fas fa-user-plus"></i> Cadastro</a></li>
-                    <li><a href="/home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="/cadastro"><i class="fas fa-user-plus"></i> <%= __('Cadastro') %></a></li>
+                    <li><a href="/home"><i class="fas fa-home"></i> <%= __('Home') %></a></li>
                     <% if (user) { %>
-                        <li class="logout"><a href="/logout" style="padding: 6px; background-color: rgb(234, 159, 159); color: white; border-radius: 5px;"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                        <li class="logout"><a href="/logout" style="padding: 6px; background-color: rgb(234, 159, 159); color: white; border-radius: 5px;"><i class="fas fa-sign-out-alt"></i> <%= __('Sair') %></a></li>
                     <% } %>
+                    <li>
+                        </details>
+                            <span class="lang-toggle">
+                                <i class="fas fa-globe"></i> <%= __('Língua') %>
+                            </span>
+                            <ul class="lang-menu">
+                                <li><a href="/lang/en"><%= __('English') %></a></li> 
+                                <li><a href="/lang/pt"><%= __('Português') %></a></li>
+                                <li><a href="/lang/fr"><%= __('Français') %></a></li>
+                                <li><a href="/lang/es"><%= __('Español') %></a></li>
+                            </ul>
+                        </details>
+                    </li>
                 </ul>
             </nav>
         </div>
-        <h4 class="enroll-btn">L'union fait la force</h4>
+        <h4 class="enroll-btn"><%= __('L\'union fait la force') %></h4>
     </header>
     <section class="hero">
         <div class="content">
-            <h1>Facilitando o Aprendizado do Português para Haitianos no Brasil</h1>
+            <h1><%= __('Facilitando o Aprendizado do Português para Haitianos no Brasil') %></h1>
             <p>
-               Eu sou Mikenson Thomas, haitiano, graduando em Ciência da Computação no IFC Brasil. 
-               Este site é o meu Trabalho de Conclusão de Curso (TCC), com o objetivo de 
-               facilitar o aprendizado da língua portuguesa para imigrantes haitianos no Brasil. 
-               Através deste site, você terá acesso a alguns vídeos do youTube bem organisados para aprimorar suas 
-               habilidades no português.
+                <%= __('Eu sou Mikenson Thomas, haitiano, graduando em Ciência da Computação no IFC Brasil. Este site é o meu Trabalho de Conclusão de Curso (TCC), com o objetivo de facilitar o aprendizado da língua portuguesa para imigrantes haitianos no Brasil. Através deste site, você terá acesso a alguns vídeos do youTube bem organisados para aprimorar suas habilidades no português.') %>
             </p>
-            <a href="/projetoTcc" class="cta-btn">SAIBA MAIS</a>
+            <a href="/projetoTcc" class="cta-btn"><%= __('SAIBA MAIS') %></a>
         </div>
         <div class="image">
             <img src="../imagens/drapo.jpeg" alt="Student">
@@ -45,7 +54,7 @@
     </section>
     <footer>
         <div class="footer-content">
-            <p>&copy; Desenvolvido por Mikenson Thomas</p>
+            <p><%= __('Desenvolvido por Mikenson Thomas') %></p>
             <ul class="socials">
                 <li><a href="https://chat.whatsapp.com/KcxOOiU5TisKApgKrCjXLu" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
                 <li><a href="mailto:plataformadelingua@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a></li>
@@ -56,10 +65,6 @@
             </ul>
         </div>
     </footer>
-    <script>
-        document.querySelector('.hamburger').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-    </script>
+    <script src="/javascripts/index.js"></script>
 </body>
 </html>
