@@ -159,8 +159,9 @@ nav ul li .lang-menu li a:hover {
     }
 
     nav ul li .lang-toggle {
-        width: 100%;
-        text-align: left;
+       text-align: left;
+        position: relative;
+        left: 5%;
     }
 
     nav ul li .lang-menu li {
