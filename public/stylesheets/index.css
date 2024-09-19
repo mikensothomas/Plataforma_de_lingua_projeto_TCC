@@ -287,6 +287,10 @@ nav ul li a {
     .content {
         max-width: 100%;
     }
+
+    .content {
+        text-align: justify;
+    }
 }
 
 .content h1 {
