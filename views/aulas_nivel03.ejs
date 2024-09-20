@@ -54,9 +54,9 @@
 <% } else { %>
   <% if (videos && videos.length > 0) { %>
     <div class="video-container">
-      <% videos.forEach(v => { %>
+      <% videos.forEach((v, index) => { %>
         <div class="video-card">
-          <h2><%= v.titulo %></h2>
+          <h2>Vídeo número <%= index + 1 %> : <%= v.titulo %></h2>
           <p><%= v.descricao %></p>
           <div class="video-wrapper">
             <iframe src="<%= v.link %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
