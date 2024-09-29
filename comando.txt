@@ -47,3 +47,6 @@ Neon, vercel
 "vercel-build": "npm run migrate && npm run build"
 
 "start": "node --watch ./bin/www"
+
+git rm -r --cached node_modules
+git rm --cached .env
