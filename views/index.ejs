@@ -18,8 +18,8 @@
                         <li><a href="/login"><i class="fas fa-sign-in-alt"></i> <%= __('Login') %></a></li>
                         <li><a href="/cadastro"><i class="fas fa-user-plus"></i> <%= __('Cadastro') %></a></li>
                     <% } %>
-                    <li><a href="/home"><i class="fas fa-home"></i> <%= __('Home') %></a></li>
                     <% if (user) { %>
+                        <li><a href="/home"><i class="fas fa-home"></i> <%= __('Home') %></a></li>
                         <li class="logout"><a href="/logout" style="padding: 6px; background-color: rgb(234, 159, 159); color: white; border-radius: 5px;"><i class="fas fa-sign-out-alt"></i> <%= __('Sair') %></a></li>
                     <% } %>
                     <li>
